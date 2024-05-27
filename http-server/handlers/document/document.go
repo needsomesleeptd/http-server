@@ -12,6 +12,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/needsomesleeptd/annotater-core/models"
 	"github.com/needsomesleeptd/annotater-core/service"
+	pdf_utils "github.com/needsomesleeptd/annotater-utils/pkg/pdfUtils"
 	error_server "github.com/needsomesleeptd/http-server/errors"
 	response "github.com/needsomesleeptd/http-server/lib/api"
 	"github.com/needsomesleeptd/http-server/middleware/auth_middleware"

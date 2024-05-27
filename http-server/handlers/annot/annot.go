@@ -10,6 +10,7 @@ import (
 	"github.com/needsomesleeptd/annotater-core/models"
 	models_dto "github.com/needsomesleeptd/annotater-core/models/dto"
 	"github.com/needsomesleeptd/annotater-core/service"
+	auth_utils "github.com/needsomesleeptd/annotater-core/utilsPorts/authUtils"
 	response "github.com/needsomesleeptd/http-server/lib/api"
 	"github.com/needsomesleeptd/http-server/middleware/auth_middleware"
 	"github.com/sirupsen/logrus"

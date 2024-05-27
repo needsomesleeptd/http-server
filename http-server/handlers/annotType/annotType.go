@@ -8,6 +8,8 @@ import (
 	"github.com/needsomesleeptd/annotater-core/models"
 	models_dto "github.com/needsomesleeptd/annotater-core/models/dto"
 	"github.com/needsomesleeptd/annotater-core/service"
+	auth_utils_adapter "github.com/needsomesleeptd/annotater-utils/pkg/authUtils"
+	error_server "github.com/needsomesleeptd/http-server/errors"
 	response "github.com/needsomesleeptd/http-server/lib/api"
 	"github.com/needsomesleeptd/http-server/middleware/auth_middleware"
 	"github.com/sirupsen/logrus"
@@ -93,7 +95,7 @@ func (h *AnnotTypeHandler) GetAnnotType() http.HandlerFunc {
 		var req RequestID
 		err := render.DecodeJSON(r.Body, &req)
 		if err != nil {
-			h.log.Warnf(logger_setup.UnableToDecodeUserReqF, err.Error())
+			h.log.Warnf(error_server.UnableToDecodeUserReqF, err.Error())
 			render.JSON(w, r, response.Error(ErrBrokenRequest.Error())) //TODO:: add logging here
 			return
 		}
@@ -115,7 +117,7 @@ func (h *AnnotTypeHandler) GetAnnotTypesByIDs() http.HandlerFunc {
 		var req RequestIDs
 		err := render.DecodeJSON(r.Body, &req)
 		if err != nil {
-			h.log.Warnf(logger_setup.UnableToDecodeUserReqF, err.Error())
+			h.log.Warnf(error_server.UnableToDecodeUserReqF, err.Error())
 			render.JSON(w, r, response.Error(ErrBrokenRequest.Error())) //TODO:: add logging here
 			return
 		}
@@ -139,7 +141,7 @@ func (h *AnnotTypeHandler) GetAnnotTypesByCreatorID() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		userID, ok := r.Context().Value(auth_middleware.UserIDContextKey).(uint64)
 		if !ok {
-			h.log.Warnf(logger_setup.UnableToGetUserifF, auth_utils.ExtractTokenFromReq(r))
+			h.log.Warnf(error_server.UnableToGetUserifF, auth_utils_adapter.ExtractTokenFromReq(r))
 			render.JSON(w, r, response.Error(ErrBrokenRequest.Error())) //TODO:: add logging here
 			return
 		}
@@ -164,7 +166,7 @@ func (h *AnnotTypeHandler) DeleteAnnotType() http.HandlerFunc {
 		var req RequestID
 		err := render.DecodeJSON(r.Body, &req)
 		if err != nil {
-			h.log.Warnf(logger_setup.UnableToDecodeUserReqF, err.Error())
+			h.log.Warnf(error_server.UnableToDecodeUserReqF, err.Error())
 			render.JSON(w, r, response.Error(ErrBrokenRequest.Error()))
 			return
 		}
