@@ -63,7 +63,7 @@ func (h *AnnotTypeHandler) AddAnnotType() http.HandlerFunc {
 		var req RequestAnnotType
 		userID, ok := r.Context().Value(auth_middleware.UserIDContextKey).(uint64)
 		if !ok {
-			h.log.Warnf("cannot get userID from jwt %v in middleware", auth_utils.ExtractTokenFromReq(r))
+			h.log.Warnf("cannot get userID from jwt %v in middleware", auth_utils_adapter.ExtractTokenFromReq(r))
 			render.JSON(w, r, response.Error(ErrBrokenRequest.Error())) //TODO:: add logging here
 			return
 		}

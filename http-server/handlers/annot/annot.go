@@ -10,7 +10,7 @@ import (
 	"github.com/needsomesleeptd/annotater-core/models"
 	models_dto "github.com/needsomesleeptd/annotater-core/models/dto"
 	"github.com/needsomesleeptd/annotater-core/service"
-	auth_utils "github.com/needsomesleeptd/annotater-core/utilsPorts/authUtils"
+	auth_utils_adapter "github.com/needsomesleeptd/annotater-utils/pkg/authUtils"
 	response "github.com/needsomesleeptd/http-server/lib/api"
 	"github.com/needsomesleeptd/http-server/middleware/auth_middleware"
 	"github.com/sirupsen/logrus"
@@ -153,7 +153,7 @@ func (h *AnnotHandler) GetAnnotsByUserID() http.HandlerFunc {
 		userID, ok := r.Context().Value(auth_middleware.UserIDContextKey).(uint64)
 		if !ok {
 			render.JSON(w, r, response.Error(ErrDecodingRequest.Error())) //TODO:: add logging here
-			h.log.Warnf("cannot get userID from jwt %v in middleware", auth_utils.ExtractTokenFromReq(r))
+			h.log.Warnf("cannot get userID from jwt %v in middleware", auth_utils_adapter.ExtractTokenFromReq(r))
 			return
 		}
 
