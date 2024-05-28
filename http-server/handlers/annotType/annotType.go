@@ -6,10 +6,10 @@ import (
 
 	"github.com/go-chi/render"
 	"github.com/needsomesleeptd/annotater-core/models"
-	models_dto "github.com/needsomesleeptd/annotater-core/models/dto"
 
 	"github.com/needsomesleeptd/annotater-core/service"
 	auth_utils_adapter "github.com/needsomesleeptd/annotater-utils/pkg/authUtils"
+	models_dto "github.com/needsomesleeptd/http-server/dto"
 	error_server "github.com/needsomesleeptd/http-server/errors"
 	response "github.com/needsomesleeptd/http-server/lib/api"
 	"github.com/needsomesleeptd/http-server/middleware/auth_middleware"

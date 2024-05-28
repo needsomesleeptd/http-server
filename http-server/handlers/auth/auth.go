@@ -7,9 +7,8 @@ import (
 	"github.com/go-chi/render"
 
 	"github.com/needsomesleeptd/annotater-core/models"
-	models_dto "github.com/needsomesleeptd/annotater-core/models/dto"
-
 	"github.com/needsomesleeptd/annotater-core/service"
+	models_dto "github.com/needsomesleeptd/http-server/dto"
 	error_server "github.com/needsomesleeptd/http-server/errors"
 	response "github.com/needsomesleeptd/http-server/lib/api"
 	"github.com/sirupsen/logrus"
